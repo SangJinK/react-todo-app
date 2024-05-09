@@ -1,13 +1,17 @@
 import React from 'react';
 import '../scss/TodoItem.scss';
 import { MdDelete, MdDone } from 'react-icons/md';
-const TodoItem = ({ todo, remove }) => {
+import cn from 'classnames';
+const TodoItem = ({ todo, remove, check }) => {
   return (
     <li className="todo-list-item">
-      <div className="check-circle">
+      <div
+        className={cn('check-circle', { active: todo.done })}
+        onClick={() => check(todo.id)}
+      >
         <MdDone />
       </div>
-      <span className="text">{todo.title}</span>
+      <span className={cn('text', { finish: todo.done })}>{todo.title}</span>
       <div
         className="remove"
         onClick={() => {

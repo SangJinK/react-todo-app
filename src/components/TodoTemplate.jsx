@@ -42,10 +42,18 @@ const TodoTemplate = () => {
       return prevTodos.filter((todo) => todo.id !== id);
     });
   };
+  const checkTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo,
+      ),
+    );
+  };
+  const cntTodo = todos.filter((todo) => !todo.done).length;
   return (
     <div className="TodoTemplate">
-      <TodoHeader />
-      <TodoMain todoList={todos} remove={removeTodo} />
+      <TodoHeader cnt={cntTodo} />
+      <TodoMain todoList={todos} remove={removeTodo} check={checkTodo} />
       <TodoInput addTodo={addTodo} />
     </div>
   );
