@@ -1,12 +1,12 @@
 import React from 'react';
 import '../scss/TodoMain.scss';
 import TodoItem from './TodoItem';
-const TodoMain = () => {
+const TodoMain = ({ todoList }) => {
   return (
     <ul className="todo-list">
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {todoList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
     </ul>
   );
 };
